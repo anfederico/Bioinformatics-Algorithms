@@ -100,7 +100,7 @@ print("C:" + c)
 print("G:" + g)
 print("T:" + t)
 
-infile.close
+infile.close()
 
 '''
 Output
