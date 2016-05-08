@@ -2,19 +2,19 @@
 Text file containing ID and Sequence (one line each)
 Simple example...(sequences can be much longer)
 
->Rosalind_1
+>Seq_1
 ATCCAGCTGTCCGACCCT
->Rosalind_2
+>Seq_2
 GGGCAACTTTCCGACTTT
->Rosalind_3
+>Seq_3
 ATGGATCTATCGGACTCT
->Rosalind_4
+>Seq_4
 AAGCAACCATCGGACTTT
->Rosalind_5
+>Seq_5
 TTGGAACTCTGGTACTCT
->Rosalind_6
+>Seq_6
 ATGCCATTTCCGATCACA
->Rosalind_7
+>Seq_7
 ATGGCACTACTGGGTCCA
 
 '''
