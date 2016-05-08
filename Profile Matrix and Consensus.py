@@ -1,3 +1,24 @@
+'''
+Text file containing ID and Sequence (one line each)
+Simple example...(sequences can be much longer)
+
+>Rosalind_1
+ATCCAGCTGTCCGACCCT
+>Rosalind_2
+GGGCAACTTTCCGACTTT
+>Rosalind_3
+ATGGATCTATCGGACTCT
+>Rosalind_4
+AAGCAACCATCGGACTTT
+>Rosalind_5
+TTGGAACTCTGGTACTCT
+>Rosalind_6
+ATGCCATTTCCGATCACA
+>Rosalind_7
+ATGGCACTACTGGGTCCA
+
+'''
+
 infile = open("in.txt", "r")
 
 A = 0
@@ -80,3 +101,17 @@ print("G:" + g)
 print("T:" + t)
 
 infile.close
+
+'''
+Output
+
+Consensus: ATGCAACTATCGGACTCT
+
+   A T G C A A C T A T C G G A C T C T 
+
+A: 5 1 0 0 5 5 0 0 3 0 0 0 1 5 0 1 0 2
+C: 0 0 1 4 2 0 6 1 1 2 5 2 0 0 6 2 5 0
+G: 1 1 6 3 0 1 0 0 1 0 1 5 5 1 0 0 0 0
+T: 1 5 0 0 0 1 1 6 2 5 1 0 1 1 1 4 2 5
+
+'''
