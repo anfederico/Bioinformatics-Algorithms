@@ -44,4 +44,6 @@ while y < len(RNA):
 
 print Protein
 
+infile.close
+
 #Output looks something like this -> MAMAPRTEINSTRING Stop
