@@ -26,7 +26,7 @@ infile = open("codons.txt", "r")
 #Load Dictionary
 codons = {}
 for line in infile:
-    if line [5] == "t":
+    if line[5] == "t":
         codons[line[0:3]] = " Stop"
     else:
         codons[line[0:3]] = line[4]
