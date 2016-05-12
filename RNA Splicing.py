@@ -29,20 +29,25 @@ ATCGGTCGAGCGTGT
 
 '''
 
-pre_mRNA = open("pre_mRNA.txt", "r")
+seq = open("sequence.txt", "r")
 sites = open("sites.txt", "w")
 
 x = 0
 y = 0
 
-for line in pre_mRNA:
+for line in seq:
     if y != 2:
         if line[0] == ">":
             y += 1
     if y == 2:
         sites.write(line)
         
+seq.close()
 sites.close()
+
+seq = open("sequence.txt", "r")
+
+pre_mRNA = ""
 
 
 
