@@ -27,5 +27,24 @@ ATCGGTCGAA
 >Splice_2
 ATCGGTCGAGCGTGT
 
-
 '''
+
+RNA = open("splicing.txt", "r")
+SPLICE = open("splice.txt", "w")
+
+x = 0
+y = 0
+
+for line in RNA:
+    if y != 2:
+        if line[0] == ">":
+            y += 1
+    if y == 2:
+        SPLICE.write(line)
+        
+SPLICE.close()
+
+
+
+
+
