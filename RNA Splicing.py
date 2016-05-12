@@ -29,20 +29,20 @@ ATCGGTCGAGCGTGT
 
 '''
 
-RNA = open("splicing.txt", "r")
-SPLICE = open("splice.txt", "w")
+pre_mRNA = open("pre_mRNA.txt", "r")
+sites = open("sites.txt", "w")
 
 x = 0
 y = 0
 
-for line in RNA:
+for line in pre_mRNA:
     if y != 2:
         if line[0] == ">":
             y += 1
     if y == 2:
-        SPLICE.write(line)
+        sites.write(line)
         
-SPLICE.close()
+sites.close()
 
 
 
