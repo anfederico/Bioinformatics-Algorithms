@@ -45,24 +45,24 @@ for line in seq:
 seq.close()
 sites.close()
 
-pre_mRNA = ""
+pre_RNA = ""
 seq = open("sequence.txt", "r")
 for line in seq:
     if x != 2:
         if line[0] == ">":
             x += 1
         else:
-            pre_mRNA = pre_mRNA + line
+            pre_RNA = pre_RNA + line
     
-pre_mRNA_list = list(pre_mRNA)
+pre_RNA_list = list(pre_RNA)
 
-for pos in range(0,len(pre_mRNA_list)-1):
-    if pre_mRNA_list[pos] == "\n":
-        pre_mRNA_list[pos] = ""
+for pos in range(0,len(pre_RNA_list)-1):
+    if pre_RNA_list[pos] == "\n":
+        pre_RNA_list[pos] = ""
 
-pre_mRNA = "".join(pre_mRNA_list)
+pre_RNA = "".join(pre_RNA_list)
 
-print mRNA
+print pre_RNA
 
 
 
