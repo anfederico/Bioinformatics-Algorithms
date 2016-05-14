@@ -100,4 +100,6 @@ for substring in all_motifs[0]:
         
 print max(common_motifs, key = len)
 
+infile.close()
+
 #Output looks something like this -> ACCCTTATGAATCGCTGTTCCAT
