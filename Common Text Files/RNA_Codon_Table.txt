@@ -38,11 +38,11 @@ UAC Y
 CAC H
 AAC N
 GAC D
-UAA Stop
+UAA /
 CAA Q
 AAA K
 GAA E
-UAG Stop
+UAG /
 CAG Q
 AAG K
 GAG E
@@ -54,7 +54,7 @@ UGC C
 CGC R
 AGC S
 GGC G
-UGA Stop
+UGA /
 CGA R
 AGA R
 GGA G
