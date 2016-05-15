@@ -1,4 +1,6 @@
+'''
 
+'''
 
 #Get primary structure and store as sring
 import urllib2
@@ -61,7 +63,7 @@ def find_motif(protein):
     pos = ""
     for num in positions:
         pos = pos + str(num) + " "
-    print pos + "\n" 
+    print pos
             
 infile = open("in.txt", "r")
 
@@ -77,3 +79,15 @@ infile.close()
 
 '''
 Output
+
+Q640N1
+471 519 913 1030 
+Q8PV50
+188 195 
+P0AAM4
+Q8CE94
+369 
+P49286
+4 130 
+
+'''
