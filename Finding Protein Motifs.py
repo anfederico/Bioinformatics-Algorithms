@@ -10,7 +10,7 @@ P49286
 
 '''
 
-#Get primary structure and store as sring
+#Get primary structure and store as string
 import urllib2
 def find_protein(protein_id):
     give_protein = ""
