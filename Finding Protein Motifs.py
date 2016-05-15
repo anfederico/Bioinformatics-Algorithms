@@ -1,4 +1,12 @@
 '''
+Text file containg protein IDs
+For example...
+
+Q640N1
+Q8PV50
+P0AAM4
+Q8CE94
+P49286
 
 '''
 
