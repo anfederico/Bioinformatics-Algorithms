@@ -28,7 +28,7 @@ def find_protein(protein_id):
     return return_protein
 
 
-#Finding the positions of N-glycosylation motif -> N{P}[ST]{P}
+#Finding the positions of N-glycosylation motif = N{P}[ST]{P}
 def find_motif(protein):    
     a = 0
     b = 1
