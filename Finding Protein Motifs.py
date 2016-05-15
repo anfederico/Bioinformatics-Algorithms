@@ -73,7 +73,7 @@ def find_motif(protein):
         pos = pos + str(num) + " "
     print pos
             
-infile = open("in.txt", "r")
+infile = open("proteins.txt", "r")
 
 listy = []
 
