@@ -41,4 +41,4 @@ for k in range (3,n+1):
 
 print F[n]
 
-#Output - > 5526636
+#Output -> 5526636
