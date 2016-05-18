@@ -1,6 +1,6 @@
 '''
 This program will return the total number of pairs of cats in a population remaining after the n-th month if all cats live for m months
-F[1] = 1 pair of baby cats (1 male + 1 female) 
+F[1] = 1 pair of baby cats (1 male and 1 female) 
 Each pair of cats reaches maturity in one month and produces a single pair of offspring (1 male + 1 female) each subsequent month including the month of death
 
 '''
