@@ -20,50 +20,87 @@ TGA Stop   CGA R      AGA R      GGA G
 TGG W      CGG R      AGG R      GGG G
 
 Text file containing pre-RNA and splice sites
->Pre-RNA_1
+>RNA_1
 ATGGTCTACATAGCTGACAAACAGCACGTAGCAATCGGTCGAATCTCGAGAGGCATATGGTCACATGATCGGTCGAGCGTGTTTCAAAGTTTGCGCCTAG
->Splice_1
+>Intron_1
 ATCGGTCGAA
->Splice_2
+>Intron_2
 ATCGGTCGAGCGTGT
 
 '''
 
-seq = open("sequence.txt", "r")
-sites = open("sites.txt", "w")
+RNA = open("splicing.txt", "r")
+SPLICE = open("introns.txt", "w")
 
+#Seperate the introns
 x = 0
 y = 0
-
-for line in seq:
+for line in RNA:
     if y != 2:
         if line[0] == ">":
             y += 1
     if y == 2:
-        sites.write(line)
+        SPLICE.write(line)
         
-seq.close()
-sites.close()
+SPLICE.close()
+RNA.close()
 
-pre_RNA = ""
-seq = open("sequence.txt", "r")
-for line in seq:
+#Create mRNA (pre-RNA at this point) string
+RNA = open("splicing.txt", "r")
+mRNA = ""
+for line in RNA:
     if x != 2:
         if line[0] == ">":
             x += 1
         else:
-            pre_RNA = pre_RNA + line
-    
-pre_RNA_list = list(pre_RNA)
+            mRNA = mRNA + line
 
-for pos in range(0,len(pre_RNA_list)-1):
-    if pre_RNA_list[pos] == "\n":
-        pre_RNA_list[pos] = ""
+#Remove internal line breaks
+mRNA_listy = list(mRNA)
+for pos in range(0,len(mRNA_listy)-1):
+    if mRNA_listy[pos] == "\n":
+        mRNA_listy[pos] = ""
+mRNA = "".join(mRNA_listy)
 
-pre_RNA = "".join(pre_RNA_list)
+#Load introns into list
+SPLICE = open("introns.txt", "r")
+introns = []
+for line in SPLICE:
+    if line[0] != '>':
+        introns.append(line.rstrip('\n'))
 
-print pre_RNA
+#Splice those introns out to get your mRNA
+for intron in introns:
+    a = 0
+    b = len(intron)
+    while b < len(mRNA):
+        if mRNA[a:b] == intron:
+            mRNA = mRNA[:a] + mRNA[b:]
+            a += 1
+            b += 1
+        else:
+            a += 1
+            b += 1
 
+#Text file containing codon/protein pairs
+infile = open("DNA_Codon_Table.txt", "r")
 
+#Load dictionary
+codons = {}
+for line in infile:
+    codons[line[0:3]] = line[4]
+
+#Convert mRNA into Protein
+Protein = ""
+x = 0
+y = 3
+while y < len(mRNA):
+    Protein = Protein + codons[mRNA[x:y]]
+    x += 3
+    y += 3
+
+print Protein
+
+#Output -> MVYIADKQHVASREAYGHMFKVCA
 
 
