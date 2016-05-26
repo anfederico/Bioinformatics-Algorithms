@@ -19,6 +19,7 @@ for kmer in kmers:
     if kmers[kmer] == max_count:
         print kmer,
 '''
+
 Output
 Count: 9
 k-mers: CGA TCC
