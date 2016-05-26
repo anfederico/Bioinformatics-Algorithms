@@ -22,4 +22,5 @@ for kmer in kmers:
 Output
 Count: 9
 k-mers: CGA TCC
+
 '''
