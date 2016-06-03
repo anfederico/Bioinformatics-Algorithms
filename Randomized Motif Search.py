@@ -212,3 +212,5 @@ for kmer in winner:
     print kmer
 print score(winner,k)
 
+'''
+Output
