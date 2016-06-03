@@ -24,7 +24,7 @@ def combos(n):
                                                                 if n > 8:
                                                                     for i in NT:
                                                                         if n > 9:
-                                                                            print "hi"
+                                                                            pass
                                     
                                                                         else:
                                                                             input[a+b+c+d+e+f+g+h+i] = NT[a]+NT[b]+NT[c]+NT[d]+NT[e]+NT[f]+NT[g]+NT[h]+NT[i]                                            
