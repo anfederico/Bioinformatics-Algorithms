@@ -44,4 +44,4 @@ def score(list,k):
     
 print score(list,k)
 
-#Outpit -> 11
+#Output -> 11
