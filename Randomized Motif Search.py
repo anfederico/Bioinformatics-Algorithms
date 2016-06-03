@@ -206,15 +206,13 @@ while run < 500:
         winner = best_kmers
     
     run += 1
-    
-print 'WINNER'
+
 for kmer in winner:
     print kmer
 print score(winner,k)
 
 '''
 Output
-WINNER
 CATATCCCAGTTGTG
 CATCAGCCAACGGTG
 GTATCCCCAACGGTG
