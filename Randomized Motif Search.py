@@ -94,9 +94,9 @@ DNA = [
 ]
 
 #Winning list
+from random import randint
 winner = []
 for seq in DNA:
-    from random import randint
     i = randint(0,len(seq)-k)
     winner.append(seq[i:i+k])
    
