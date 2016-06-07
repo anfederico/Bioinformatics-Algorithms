@@ -12,11 +12,11 @@ UCA S      CCA P      ACA T      GCA A
 UCG S      CCG P      ACG T      GCG A
 UAU Y      CAU H      AAU N      GAU D
 UAC Y      CAC H      AAC N      GAC D
-UAA Stop   CAA Q      AAA K      GAA E
-UAG Stop   CAG Q      AAG K      GAG E
+UAA *      CAA Q      AAA K      GAA E
+UAG *      CAG Q      AAG K      GAG E
 UGU C      CGU R      AGU S      GGU G
 UGC C      CGC R      AGC S      GGC G
-UGA Stop   CGA R      AGA R      GGA G
+UGA *      CGA R      AGA R      GGA G
 UGG W      CGG R      AGG R      GGG G
 
 '''
@@ -38,6 +38,8 @@ x = 0
 y = 3
 
 while y < len(RNA):
+    if codons[RNA[x:y]] == '*':
+        break
     Protein = Protein + codons[RNA[x:y]]
     x += 3
     y += 3
@@ -46,4 +48,4 @@ print Protein
 
 infile.close()
 
-#Output looks something like this -> MAMAPRTEINSTRING Stop
+#Output -> MAMAPRTEINSTRING
