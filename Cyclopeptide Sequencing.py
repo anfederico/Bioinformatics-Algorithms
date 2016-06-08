@@ -85,7 +85,7 @@ while len(combos) != 0:
                     combos.append(string+amino_acid)
         combos.remove(string)  
 
-#Weeds out unique peptides
+#Selects unique peptides
 unique_dict = {}
 for protein in correct:
     string = ''
