@@ -101,7 +101,6 @@ for protein in unique_dict:
     
 '''
 Output
-
 MVETTW(L/I)NPYA
 (L/I)WTTEVMAYPN
 TEVMAYPN(L/I)WT
