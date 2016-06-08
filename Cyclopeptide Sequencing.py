@@ -73,7 +73,7 @@ correct = [] #Store correct peptides
 for letter in aa:
     combos.append(letter)
 
-#Recursive function for building and checking peptides
+#Recursive method for building and checking peptides
 i = 0
 while len(combos) != 0:
     for string in combos:
