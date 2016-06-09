@@ -39,7 +39,7 @@ def lin_spec(protein):
     
     return sizes
     
-#=============== CHECK COMPATABILITY ===============#
+#=============== CHECK COMPATABILITY ==============#
 
 def check_compat(protein_spec, spec_ideal):
     temp = deepcopy(spec_ideal)
