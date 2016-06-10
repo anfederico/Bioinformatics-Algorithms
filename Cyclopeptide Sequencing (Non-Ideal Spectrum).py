@@ -62,7 +62,6 @@ def find_convo(sort_spec_list, m):
     output = []
     for element in multi:    
         if multi[element] >= minimum:
-            #print str(element) + ': (' + str(multi[element]) + ')'
             output.append(str(element))
     
     return output
