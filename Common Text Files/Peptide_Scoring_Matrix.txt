@@ -21,7 +21,7 @@ W -3 -2 -4 -3  1 -2 -2 -3 -3 -2 -1 -4 -4 -2 -3 -3 -2 -3 11  2
 Y -2 -2 -3 -2  3 -3  2 -1 -2 -1 -1 -2 -3 -1 -2 -2 -2 -1  2  7
 
 
-Shortcut for loading into a Python dictionary
+Shortcut for loading into a Python dictionary (2-way lookup)
 blosum_62 = {'GW': -2, 'GV': -3, 'GT': -2, 'GS': 0, 'GR': -2, 'GQ': -2, 'GP': -2, 'GY': -3, 'GG': 6, 'GF': -3, 'GE': -2, 'GD': -1,
              'GC': -3, 'GA': 0, 'GN': 0, 'GM': -3, 'GL': -4, 'GK': -2, 'GI': -4, 'GH': -2, 'ME': -2, 'MD': -3, 'MG': -3, 'MF': 0,
              'MA': -1, 'MC': -1, 'MM': 5, 'ML': 2, 'MN': -2, 'MI': 1, 'MH': -2, 'MK': -1, 'MT': -1, 'MW': -1, 'MV': 1, 'MQ': 0,
