@@ -1,7 +1,7 @@
 import copy
 
 string = 'ATCGTGTAACCGGTGGGACGCCCGGCGAGGCTGATCTGTCTATGCTCATTTCAGACCACTCGTAGCGAGCCTGTTCGTC'
-k = 2 #k-mer size
+k = 2 #length of k-mer
 
 nts = ['A','C','G','T']
 kmers_one = ['A','C','G','T']
@@ -30,3 +30,4 @@ for kmer in kmers_one:
     print kmer_dict[kmer],
     
 #Output -> 1 4 4 4 3 5 8 6 5 6 5 7 3 8 6 3
+#Lexicographically ordered -> AA AC AG AT CA CC CG CT GA GC GG GT TA TC TG TT
