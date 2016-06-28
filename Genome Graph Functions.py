@@ -33,3 +33,4 @@ def ChromosomeToCycle(Chromosome):
     cycle = cycle.strip(' ')
     cycle += ')'
     return cycle       
+
