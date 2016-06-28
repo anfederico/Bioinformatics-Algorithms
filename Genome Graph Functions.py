@@ -36,8 +36,6 @@ def ChromosomeToCycle(Chromosome):
     return cycle       
 
 
-    
- 
 print CycleToChromosome('(1 2 4 3 6 5 7 8)') #Output -> (+1 -2 -3 +4)
 def CycleToChromosome(Cycle):
     cyc_for = []
@@ -70,7 +68,8 @@ def CycleToChromosome(Cycle):
     chrom_for = chrom_for.strip(' ')
     chrom_for += ')'
     return chrom_for
-    
+  
+  
 print ColoredEdges('(+1 -2 -3)(-4 +5 -6)') #Output -> [(2, 4), (3, 6), (5, 1), (7, 9), (10, 12), (11, 8)]
 def ColoredEdges(Genome):
     genomes = []
@@ -114,6 +113,7 @@ def ColoredEdges(Genome):
             j += 2
         colored_edges.append((chrom[len(chrom)-1], chrom[0]))   
     return colored_edges
+
 
 print GraphToGenome([(2, 4), (3, 6), (5, 1), (7, 9), (10, 12), (11, 8)]) #Output -> (+1 -2 -3)(-4 +5 -6)
 def GraphToGenome(Graph):
