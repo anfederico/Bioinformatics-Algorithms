@@ -1,4 +1,3 @@
-
 print ChromosomeToCycle('(+1 -2 -3 +4)') #Output -> (1 2 4 3 6 5 7 8)
 def ChromosomeToCycle(Chromosome):
     chr_for = []
