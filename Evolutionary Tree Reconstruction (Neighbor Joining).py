@@ -18,7 +18,7 @@ Matrix_Species.txt
 infile = open('Matrix_Species.txt', 'r')
 
 #Setup starting matrix D and fill it in
-n = 9 #size of matrx
+n = 9 #size of matrix
 m = 9 #start numbering unkown ancestors
 D = {}
 species = ['Cow', 'Pig', 'Horse', 'Mouse', 'Dog', 'Cat', 'Turkey', 'Civet', 'Human']
