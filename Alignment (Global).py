@@ -46,6 +46,7 @@ while i+j != 0:
         V += '-'        
         W += w[j-1]
         j = j-1
+        
     elif j == 0:
         V += v[i-1]
         W += '-'
