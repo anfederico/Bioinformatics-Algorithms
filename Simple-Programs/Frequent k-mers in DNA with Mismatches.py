@@ -40,11 +40,10 @@ def ReverseComplement(DNAin):
 genome = 'ACGTTGCATGTCGCATGAGCTAGCTTTGATGAGGATGAGCTTTGGAGCGCCCAAACTGCATGAGAGCT'
 k = 5 #Length of k-mer
 d = 2 #Max mismatches allowed
-
-kmers = GenerateKmers(k)
-most_frequent = {}
+kmers = GenerateKmers(k) #Generate k-mers
 
 #Compute number of appearances of k-mer and its reverse compliment throughout genome
+most_frequent = {}
 for kmer in kmers:
     j = 0
     while j < len(genome)-len(kmer)+1:
