@@ -1,6 +1,6 @@
 import copy
 
-def Generate_Kmers(k):
+def GenerateKmers(k):
     nts  = ['A','C','G','T']
     kmers = ['A','C','G','T']
     count = 0
@@ -22,7 +22,7 @@ def HammingDistance(genome, pattern):
         i += 1
     return mismatch
 
-def Reverse_Complement(DNAin):
+def ReverseComplement(DNAin):
     y = len(DNAin) - 1
     DNAout = ''
     while y > -1:
@@ -41,21 +41,21 @@ genome = 'ACGTTGCATGTCGCATGAGCTAGCTTTGATGAGGATGAGCTTTGGAGCGCCCAAACTGCATGAGAGCT'
 k = 5 #Length of k-mer
 d = 2 #Max mismatches allowed
 
-kmers = Generate_Kmers(k)
+kmers = GenerateKmers(k)
 most_frequent = {}
 
 #Compute number of appearances of k-mer and its reverse compliment throughout genome
 for kmer in kmers:
     j = 0
     while j < len(genome)-len(kmer)+1:
-        rev_kmer = Reverse_Complement(kmer)
+        kmer_rev = ReverseComplement(kmer)
         if HammingDistance(genome[j:j+len(kmer)],kmer) <= d:
-            most_frequent.setdefault((kmer, rev_kmer),0)
-            most_frequent[(kmer, rev_kmer)] += 1 
+            most_frequent.setdefault((kmer, kmer_rev),0)
+            most_frequent[(kmer, kmer_rev)] += 1 
         
-        if HammingDistance(genome[j:j+len(rev_kmer)],rev_kmer) <= d:
-            most_frequent.setdefault((kmer, rev_kmer),0)
-            most_frequent[(kmer, rev_kmer)] += 1 
+        if HammingDistance(genome[j:j+len(kmer_rev)],kmer_rev) <= d:
+            most_frequent.setdefault((kmer, kmer_rev),0)
+            most_frequent[(kmer, kmer_rev)] += 1 
         
         j += 1
 
@@ -68,7 +68,7 @@ for kmer in most_frequent:
     if most_frequent[kmer] == max(values):
         output_ordered.append(kmer)
 
-#Seperate copies of (kmer/rev_kmer) and (rev_kmer/kmer)       
+#Seperate copies of (kmer/kmer_rev) and (kmer_rev/kmer)       
 seperate = {}       
 for pair in sorted(output_ordered):
     for kmer in pair:
