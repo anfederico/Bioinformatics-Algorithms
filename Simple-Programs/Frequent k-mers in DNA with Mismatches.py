@@ -48,7 +48,9 @@ most_frequent = {}
 for kmer in kmers:
     j = 0
     while j < len(genome)-len(kmer)+1:
+        
         kmer_rev = ReverseComplement(kmer)
+        
         if HammingDistance(genome[j:j+len(kmer)],kmer) <= d:
             most_frequent.setdefault((kmer, kmer_rev),0)
             most_frequent[(kmer, kmer_rev)] += 1 
@@ -73,7 +75,6 @@ seperate = {}
 for pair in sorted(output_ordered):
     for kmer in pair:
         seperate[kmer] = 0
-
 for kmer in seperate:
     print kmer,
     
