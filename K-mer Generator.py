@@ -1,4 +1,5 @@
 import copy
+
 def Generate_Kmers(size):
     nts  = ['A','C','G','T']
     kmers = ['A','C','G','T']
