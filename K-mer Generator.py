@@ -1,10 +1,10 @@
 import copy
 
-def Generate_Kmers(size):
+def Generate_Kmers(k):
     nts  = ['A','C','G','T']
     kmers = ['A','C','G','T']
     count = 0
-    while count < size-1:
+    while count < k-1:
         kmers_temp = []
         for kmer in kmers:
             for nt in nts:
