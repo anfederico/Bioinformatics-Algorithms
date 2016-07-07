@@ -22,7 +22,7 @@ def HammingDistance(genome, pattern):
         i += 1
     return mismatch
 
-def reverse_complement(DNAin):
+def Reverse_Complement(DNAin):
     y = len(DNAin) - 1
     DNAout = ''
     while y > -1:
@@ -48,7 +48,7 @@ most_frequent = {}
 for kmer in kmers:
     j = 0
     while j < len(genome)-len(kmer)+1:
-        rev_kmer = reverse_complement(kmer)
+        rev_kmer = Reverse_Complement(kmer)
         if HammingDistance(genome[j:j+len(kmer)],kmer) <= d:
             most_frequent.setdefault((kmer, rev_kmer),0)
             most_frequent[(kmer, rev_kmer)] += 1 
@@ -68,7 +68,7 @@ for kmer in most_frequent:
     if most_frequent[kmer] == max(values):
         output_ordered.append(kmer)
 
-#Seperate copies of (kmer/remk) and (remk/kmer)       
+#Seperate copies of (kmer/rev_kmer) and (rev_kmer/kmer)       
 seperate = {}       
 for pair in sorted(output_ordered):
     for kmer in pair:
