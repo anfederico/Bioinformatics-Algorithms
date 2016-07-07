@@ -47,17 +47,13 @@ most_frequent = {}
 for kmer in kmers:
     j = 0
     while j < len(genome)-len(kmer)+1:
-        
         kmer_rev = ReverseComplement(kmer)
-        
         if HammingDistance(genome[j:j+len(kmer)],kmer) <= d:
             most_frequent.setdefault((kmer, kmer_rev),0)
-            most_frequent[(kmer, kmer_rev)] += 1 
-        
+            most_frequent[(kmer, kmer_rev)] += 1
         if HammingDistance(genome[j:j+len(kmer_rev)],kmer_rev) <= d:
             most_frequent.setdefault((kmer, kmer_rev),0)
-            most_frequent[(kmer, kmer_rev)] += 1 
-        
+            most_frequent[(kmer, kmer_rev)] += 1
         j += 1
 
 #Find maximum values
