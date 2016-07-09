@@ -89,7 +89,7 @@ Text = 'ATTATCCCTCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCCGCGCTTATATACGCCTGGTCA$'
 print 'Original Text'
 print Text
 
-#A BWT naturally converts CpGs into repeating C's and G's
+#A BWT naturally converts CpG repeats into C and G runs
 #Very useful for run-length encoding a full genome
 BWT =  BWTConstruction(Text)
 print 'Constructed BWT'
