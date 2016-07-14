@@ -1,6 +1,6 @@
 import copy
 
-def Generate_Kmers(k):
+def GenerateKmers(k):
     nts  = ['A','C','G','T']
     kmers = ['A','C','G','T']
     count = 0
@@ -13,6 +13,6 @@ def Generate_Kmers(k):
         count += 1
     return kmers    
 
-print Generate_Kmers(4)
+print GenerateKmers(4)
 
 #Output ->['AAAA', 'AAAC', 'AAAG', 'AAAT',...,'TTTA', 'TTTC', 'TTTG', 'TTTT']
