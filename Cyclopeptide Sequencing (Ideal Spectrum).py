@@ -1,126 +1,92 @@
 from copy import deepcopy
-infile = open('AA_Mass_Table.txt', 'r')
 
+infile = open('AA_MassTablet', 'r')
 aa = {}
 for line in infile:
     aa[line[0]] = line[2:].strip('\n')
+infile.close()
 
 #Ideal experimental spectrum
-spec_strn = '0 71 97 99 101 101 113 114 129 131 163 186 202 202 211 227 228 230 230 234 260 287 299 301 324 329 331 331 359 365 374 388 400 413 430 430 445 460 462 464 487 501 510 514 517 531 558 561 561 576 593 611 615 616 630 632 673 675 689 690 694 712 729 744 744 747 774 788 791 795 804 818 841 843 845 860 875 875 892 905 917 931 940 946 974 974 976 981 1004 1006 1018 1045 1071 1075 1075 1077 1078 1094 1103 1103 1119 1142 1174 1176 1191 1192 1204 1204 1206 1208 1234 1305 '
+SpectrumIdealTemp = '0 71 97 99 101 101 113 114 129 131 163 186 202 202 211 227 228 230 230 234 260 287 299 301 324 329 331 331 359 365 374 388 400 413 430 430 445 460 462 464 487 501 510 514 517 531 558 561 561 576 593 611 615 616 630 632 673 675 689 690 694 712 729 744 744 747 774 788 791 795 804 818 841 843 845 860 875 875 892 905 917 931 940 946 974 974 976 981 1004 1006 1018 1045 1071 1075 1075 1077 1078 1094 1103 1103 1119 1142 1174 1176 1191 1192 1204 1204 1206 1208 1234 1305'
+SpectrumIdeal = SpectrumIdealTemp.split()
 
-#Reorganize through listing
-spec_ideal = []
-spec_temp = ''
-for char in spec_strn:
-    if char != ' ':
-        spec_temp += char
-    else:
-        spec_ideal.append(spec_temp)
-        spec_temp = ''
-
-#============== FIND LINEAR SPECTRUM ==============#
-
-def lin_spec(protein):
-    proteins = []
+def LinearSpectrum(peptide):
+    #Find the linear spectrum of the peptide
+    peptides = []
     sizes = ['0']
-    proteins.append(protein)
-    
-    n = len(protein)
-    
+    peptides.append(peptide)
+    n = len(peptide)
     for window in range(1,n):
         for i in range(0,n-window+1):
-            proteins.append(protein[i:i+window])
-        
-    for string in proteins:
+            peptides.append(peptide[i:i+window])
+    for string in peptides:
         total = 0
-        for amino_acid in string:
-            total += int(aa[amino_acid])
+        for aminoacid in string:
+            total += int(aa[aminoacid])
         sizes.append(str(total))
-    
     return sizes
     
-#=============== CHECK COMPATABILITY ==============#
-
-def check_compat(protein_spec, spec_ideal):
-    temp = deepcopy(spec_ideal)
-    compat = True
-    for num_prot in protein_spec:
+def CheckCompatibility(SpectrumCheck, SpectrumIdeal):
+    #Check compatibility with the ideal spectrum
+    temp = deepcopy(SpectrumIdeal)
+    compatibility = True
+    for SpecProt in SpectrumCheck:
         present = 0
-        for num_spec in temp:
-            if num_prot == num_spec:
+        for SpecNum in temp:
+            if SpecProt == SpecNum:
                 present = 1
         if present == 1:
-            temp.remove(num_prot)
+            temp.remove(SpecProt)
         if present == 0:
-            compat = False
-            return compat
-    return compat
-            
-#==================== FIND MASS ====================#
+            compatibility = False
+            return compatibility
+    return compatibility
 
-def find_mass(spectrum):
-    temp_list = []
-    for str in spectrum:
-        temp_list.append(int(str))
-    temp_list = sorted(temp_list)
-    return temp_list[len(temp_list)-1]
+def FindMass(spectrum):
+    temp = []
+    for num in spectrum:
+        temp.append(int(num))
+    temp = sorted(temp)
+    return temp[len(temp)-1]
 
-#Correct mass to check for
-corr_mass = find_mass(spec_ideal)
-
-combos = [] #Store potential peptides
-correct = [] #Store correct peptides
-for letter in aa:
-    combos.append(letter)
-
-#Recursive method for building and checking peptides
-i = 0
-while len(combos) != 0:
-    for string in combos:
-        for amino_acid in aa: 
-            if check_compat(lin_spec(string+amino_acid), spec_ideal) == True:
-                if find_mass(lin_spec(string+amino_acid)) == corr_mass:
-                    correct.append(string+amino_acid)
-                elif find_mass(lin_spec(string+amino_acid)) < corr_mass:
-                    combos.append(string+amino_acid)
-        combos.remove(string)  
-
-#Selects unique peptides
-unique_dict = {}
-for protein in correct:
-    string = ''
-    for amino_acid in protein:
-        if amino_acid == 'L' or amino_acid == 'I':
-            string += '(L/I)'
-        else:
-            string += amino_acid
-    unique_dict[string] = 1
-
-for protein in unique_dict:
-    print protein
+def IdealSequencing(SpectrumIdeal):
+    #Find correct mass of the ideal spectrum
+    CorrectMass = FindMass(SpectrumIdeal)
     
-'''
-Output
-MVETTW(L/I)NPYA
-(L/I)WTTEVMAYPN
-TEVMAYPN(L/I)WT
-MAYPN(L/I)WTTEV
-WTTEVMAYPN(L/I)
-TTEVMAYPN(L/I)W
-YPN(L/I)WTTEVMA
-(L/I)NPYAMVETTW
-AYPN(L/I)WTTEVM
-ETTW(L/I)NPYAMV
-N(L/I)WTTEVMAYP
-VETTW(L/I)NPYAM
-W(L/I)NPYAMVETT
-PYAMVETTW(L/I)N
-VMAYPN(L/I)WTTE
-YAMVETTW(L/I)NP
-NPYAMVETTW(L/I)
-TW(L/I)NPYAMVET
-PN(L/I)WTTEVMAY
-AMVETTW(L/I)NPY
-TTW(L/I)NPYAMVE
-EVMAYPN(L/I)WTT
-'''
+    Combos = [] #Store potential peptides
+    Correct = [] #Store correct peptides
+    for letter in aa:
+        Combos.append(letter)
+
+    #Recursive method for building and checking peptides
+    while len(Combos) != 0:
+        for string in Combos:
+            for aminoacid in aa: 
+                if CheckCompatibility(LinearSpectrum(string+aminoacid), SpectrumIdeal) == True:
+                    
+                    #If compatible thus far, and mass is correct, add to correct pile
+                    if FindMass(LinearSpectrum(string+aminoacid)) == CorrectMass:
+                        Correct.append(string+aminoacid)
+                    
+                    #If compatible thus far, but mass is too small, retry with another amino acid appended next round 
+                    elif FindMass(LinearSpectrum(string+aminoacid)) < CorrectMass:
+                        Combos.append(string+aminoacid)
+            
+            Combos.remove(string)  
+
+    #Selects unique peptides
+    unique = {}
+    for peptide in Correct:
+        string = ''
+        for aminoacid in peptide:
+            if aminoacid == 'L' or aminoacid == 'I':
+                string += '(L/I)'
+            else:
+                string += aminoacid
+        unique[string] = 1
+    return unique
+        
+Peptides = IdealSequencing(SpectrumIdeal)     
+
+for peptide in Peptides:
+        print peptide
