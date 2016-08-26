@@ -51,7 +51,7 @@ def BWTReconstruction(BWT):
 
     return Text
 
-def Compress(text):
+def Compress(Text):
     #Run-length encoding
     i = 1
     k = 1
@@ -84,7 +84,7 @@ def Decompress(CompressedTextList):
 
 '''==============[Demonstration]=============='''
 
-#Short string of nts with a small CpG island to display utility        
+#Short string of nts with CpG repeats to display utility        
 Text = 'ATTATCCCTCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCCGCGCTTATATACGCCTGGTCA$'
 print 'Original Text'
 print Text
@@ -111,8 +111,6 @@ print 'Reconstructed Text'
 print TextReconstructed
 
 '''
-Output
-
 Original Text
 ATTATCCCTCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCCGCGCTTATATACGCCTGGTCA$
 Constructed BWT
@@ -123,5 +121,4 @@ Decompressed BWT
 ACTTTT$TTGCGGAGGGGGGGGGGGGGTCGCCGCCCCCCCCCCCCCCCCCCTGAATTGACCCA
 Reconstructed Text
 ATTATCCCTCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCCGCGCTTATATACGCCTGGTCA$
-
 '''
