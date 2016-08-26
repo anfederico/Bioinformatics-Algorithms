@@ -1,27 +1,13 @@
-'''=================[SETUP]================='''
 import copy
 import operator
 
-'''
-Matrix_Species.txt
-0 295 300 524 1077 1080 978 941 940
-295 0 314 487 1071 1088 1010 963 966
-300 314 0 472 1085 1088 1025 965 956
-524 487 472 0 1101 1099 1021 962 965
-1076 1070 1085 1101 0 818 1053 1057 1054
-1082 1088 1088 1098 818 0 1070 1085 1080
-976 1011 1025 1021 1053 1070 0 963 961
-941 963 965 962 1057 1085 963 0 16
-940 966 956 965 1054 1080 961 16 0
-'''
-
-infile = open('Matrix_Species.txt', 'r')
-
-#Setup starting matrix D and fill it in
+infile = open('Matrix.txt', 'r')
 n = 9 #Size of matrix
 m = 9 #Start numbering unkown ancestors
-D = {}
 species = ['Cow', 'Pig', 'Horse', 'Mouse', 'Dog', 'Cat', 'Turkey', 'Civet', 'Human']
+
+#Setup starting matrix D and fill it in
+D = {}
 for i in species:
     D[i] = {}
     for j in species:
@@ -29,18 +15,11 @@ for i in species:
 i = 0
 for line in infile:
     j = 0
-    temp = ''
-    for char in line:
-        if char != ' ':
-            temp += char
-        else:
-            D[species[i]][species[j]] = float(temp)
-            temp = ''
-            j += 1
-    D[species[i]][species[j]] = float(temp.strip('\n'))
+    for number in line.split():
+        D[species[i]][species[j]] = int(number)
+        j += 1
     i += 1        
-
-'''=================[FUNCTIONS]================='''
+infile.close()    
 
 #Use to visualize matrix D/D*
 def Visualize(D):
@@ -52,7 +31,7 @@ def Visualize(D):
         print D[line]
 
 #Transform matrix D to D* and find closest neighbors Ni and Nj         
-def TransformMatrix(D):
+def TransformMatrix(D):    
     #Find Total Distance
     TotalDistance = {}
     for i in D:
@@ -60,6 +39,7 @@ def TransformMatrix(D):
         for j in D:
             total += D[i][j]
         TotalDistance[i] = total
+    
     #Create D*
     Dstar = {}
     for i in D:
@@ -72,6 +52,7 @@ def TransformMatrix(D):
                 Dstar[i][j] = 0
             else:
                 Dstar[i][j] = (n-2)*D[i][j]-TotalDistance[i]-TotalDistance[j]
+    
     #Find minimum neighbors
     Dstar_values = []
     for i in Dstar:
@@ -113,9 +94,8 @@ def MakeLimbs(D_temp,m,Ni,Nj,TotalDistance):
     adj_list.append([Ni, str(Ni) + '->' + str(m) + ':' + str(int(LimbLength_Ni))])
     adj_list.append([m, str(m) + '->' + str(Nj) + ':' + str(int(LimbLength_Nj))])
     adj_list.append([Nj, str(Nj) + '->' + str(m) + ':' + str(int(LimbLength_Nj))])
-    
-'''=================[BEGIN]================='''
 
+#Neighbor Joining    
 adj_list = []    
 while n != 2:
     Ni, Nj, Dstar, TotalDistance = TransformMatrix(D)
@@ -135,37 +115,3 @@ if n == 2:
 #Print adjacency list
 for edge in sorted(adj_list):
     print edge[1]
-    
-'''
-Output
-9->12:454
-9->Civet:9
-9->Human:7
-10->11:163
-10->Cat:414
-10->Dog:403
-11->10:163
-11->12:22
-11->Turkey:488
-12->11:22
-12->13:250
-12->9:454
-13->12:250
-13->14:85
-13->Mouse:253
-14->13:85
-14->15:10
-14->Horse:148
-15->14:10
-15->Cow:146
-15->Pig:148
-Cat->10:414
-Civet->9:9
-Cow->15:146
-Dog->10:403
-Horse->14:148
-Human->9:7
-Mouse->13:253
-Pig->15:148
-Turkey->11:488
-'''
